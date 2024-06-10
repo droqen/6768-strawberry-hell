@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://dpqjuae075mqn"]
+
+[ext_resource type="Script" path="res://navdi4/main/navdimain.gd" id="1_h0jll"]
+[ext_resource type="Script" path="res://screens.gd" id="2_5jnvl"]
+[ext_resource type="Texture2D" uid="uid://davutmyd08428" path="res://media/red-red-red-red-red-red-red.png" id="3_52np1"]
+[ext_resource type="Script" path="res://gameworld.gd" id="3_tmn0l"]
+[ext_resource type="PackedScene" uid="uid://bfpt6u45a4n2m" path="res://levels/level_1.tscn" id="4_ipmkw"]
+[ext_resource type="PackedScene" uid="uid://c345jxluud3jf" path="res://player.tscn" id="4_tt7l2"]
+[ext_resource type="Script" path="res://navdi4/main/navdisheetsprite.gd" id="4_x7apk"]
+[ext_resource type="Resource" uid="uid://bpahhq66nvgf8" path="res://media/red-sheet.tres" id="5_5ntwo"]
+[ext_resource type="Script" path="res://dialogbox.gd" id="6_xooik"]
+[ext_resource type="FontFile" uid="uid://cwwyrmvhedp2t" path="res://navdi4/fonts/thin8high.ttf" id="7_62232"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0i4j"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pycn1"]
+line_spacing = -2.0
+font = ExtResource("7_62232")
+
+[node name="Main" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_h0jll")
+game_name = "strawbeerryy hell"
+game_size = Vector2i(300, 260)
+view_scale = Vector2i(2, 3)
+time_year = 2024
+time_month = "June"
+time_day = 10
+
+[node name="screens" type="Node2D" parent="."]
+script = ExtResource("2_5jnvl")
+
+[node name="gameworld" type="Node2D" parent="screens"]
+script = ExtResource("3_tmn0l")
+
+[node name="levelctr" type="Node2D" parent="screens/gameworld"]
+
+[node name="level1" parent="screens/gameworld/levelctr" instance=ExtResource("4_ipmkw")]
+
+[node name="player" parent="screens/gameworld" instance=ExtResource("4_tt7l2")]
+position = Vector2(66, 245)
+
+[node name="dialogbox" type="Node2D" parent="screens" node_paths=PackedStringArray("label")]
+script = ExtResource("6_xooik")
+label = NodePath("PanelContainer/Label")
+
+[node name="PanelContainer" type="PanelContainer" parent="screens/dialogbox"]
+offset_right = 300.0
+offset_bottom = 260.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b0i4j")
+
+[node name="Label" type="Label" parent="screens/dialogbox/PanelContainer"]
+layout_mode = 2
+text = "HELL
+HELL
+HELL
+HELL"
+label_settings = SubResource("LabelSettings_pycn1")
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="continue_blinker" type="Sprite2D" parent="screens/dialogbox"]
+position = Vector2(150, 255)
+texture = ExtResource("3_52np1")
+hframes = 10
+vframes = 10
+frame = 9
+script = ExtResource("4_x7apk")
+sheet = ExtResource("5_5ntwo")
+frames = PackedInt32Array(8, 9, 8)
+ani_index = 1

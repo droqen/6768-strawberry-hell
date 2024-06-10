@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Sheet" load_steps=3 format=3 uid="uid://bpahhq66nvgf8"]
+
+[ext_resource type="Script" path="res://navdi4/main/navdisheet.gd" id="1_1wik4"]
+[ext_resource type="Texture2D" uid="uid://davutmyd08428" path="res://media/red-red-red-red-red-red-red.png" id="2_0w8oy"]
+
+[resource]
+script = ExtResource("1_1wik4")
+texture = ExtResource("2_0w8oy")
+hframes = 10
+vframes = 10
+defaultframe = 0

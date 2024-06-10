@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://c345jxluud3jf"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_m35jh"]
+[ext_resource type="Texture2D" uid="uid://davutmyd08428" path="res://media/red-red-red-red-red-red-red.png" id="2_40wuy"]
+[ext_resource type="Script" path="res://navdi4/main/navdisheetsprite.gd" id="3_wdtuk"]
+[ext_resource type="Resource" uid="uid://bpahhq66nvgf8" path="res://media/red-sheet.tres" id="4_isyrm"]
+[ext_resource type="Script" path="res://navdi4/main/navdibodymover.gd" id="5_8p3ew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lf3d"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ui8yb"]
+size = Vector2(8, 8)
+
+[node name="player" type="Node2D"]
+position = Vector2(65, 243)
+script = ExtResource("1_m35jh")
+
+[node name="SheetSprite" type="Sprite2D" parent="."]
+process_mode = 3
+texture = ExtResource("2_40wuy")
+hframes = 10
+vframes = 10
+frame = 10
+script = ExtResource("3_wdtuk")
+sheet = ExtResource("4_isyrm")
+frames = PackedInt32Array(10, 11, 12)
+
+[node name="mover" type="Node2D" parent="."]
+position = Vector2(0, 1)
+script = ExtResource("5_8p3ew")
+
+[node name="solidcast" type="ShapeCast2D" parent="mover"]
+shape = SubResource("RectangleShape2D_8lf3d")
+target_position = Vector2(0, 0)
+
+[node name="door_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door_detector"]
+shape = SubResource("RectangleShape2D_ui8yb")
